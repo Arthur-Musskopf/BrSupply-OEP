@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# VSCode
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dados temporários
+*.csv
+*.xlsx
+*.parquet
+*.pkl
+*.db
+
+# FAISS
+faiss_index_completo/
