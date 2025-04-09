@@ -2,6 +2,8 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain.memory import ConversationBufferMemory
+from dotenv import load_dotenv
+load_dotenv()
 
 llm = ChatOpenAI(model="gpt-4o", temperature=0)
 embeddings = OpenAIEmbeddings(model="text-embedding-3-large")

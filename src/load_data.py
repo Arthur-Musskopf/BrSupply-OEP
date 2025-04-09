@@ -11,6 +11,26 @@ def carregar_arquivos_csv():
         if filename.endswith(".csv"):
             nome_df = filename.replace(".csv", "").lower()
             df = pd.read_csv(os.path.join(DATA_DIR, filename), encoding="utf-8")
+
+            # Pré-processamento específico por base
+            if "pedido" in nome_df and "valor total" in df.columns:
+                df["Valor Total"] = (
+                    df["Valor Total"]
+                    .astype(str)
+                    .str.replace("R$", "", regex=False)
+                    .str.replace(".", "", regex=False)
+                    .str.replace(",", ".", regex=False)
+                    .astype(float)
+                )
+
+            if "pedido" in nome_df and "data pedido" in df.columns:
+                df["Data Pedido"] = pd.to_datetime(
+                    df["Data Pedido"], errors="coerce", dayfirst=True
+                )
+
+            if "usuarios" in nome_df and "Login" in df.columns:
+                df["Login"] = df["Login"].astype(str)
+
             dataframes[nome_df] = df
     return dataframes
 
